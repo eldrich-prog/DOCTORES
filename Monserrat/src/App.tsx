@@ -777,34 +777,3 @@ function TestimonioCard({ testimonio }: { testimonio: Testimonio }) {
   );
 }
 
-/**
- * Estilos globales CSS personalizados
- * Se pueden agregar en un archivo global.css o en styled-components
- */
-const globalStyles = `
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fadeIn {
-    animation: fadeIn 0.6s ease-out;
-  }
-
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Selection color mejorado */
-  ::selection {
-    background-color: rgb(13, 148, 136);
-    color: white;
-  }
-`;
