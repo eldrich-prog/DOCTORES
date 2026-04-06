@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@theme {
+  /* Tu color personalizado */
+  --color-gris-medio: rgb(130, 130, 130);
+  /* Esto crea clases como bg-brand, text-brand, border-brand */
+  --color-brand: #C4F45D;
+  
+  /* También puedes crear una paleta completa */
+  --color-finance-primary: #0D47A1;
+  --color-finance-secondary: #C4F45D;
+} 
