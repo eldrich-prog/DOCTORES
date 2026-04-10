@@ -16,11 +16,11 @@
  */
 
 import { useState, useEffect, useRef, useMemo, ReactNode } from "react";
+import Footer from "./components/Footer.tsx";
 import {
   Phone, Award, CheckCircle, Star, ArrowRight,
-  MapPin, ChevronDown, MessageCircle,
-  Users, Activity, HeartPulse, Brain, Quote,
-  Stethoscope, Crosshair, Zap
+  Users, Quote, ClipboardCheck, Syringe, Stethoscope, 
+  Move, ThermometerSnowflake, Accessibility, Zap
 } from "lucide-react";
 
 // ============================================
@@ -158,39 +158,39 @@ export default function DoctorLanding() {
    * Usememo previene re-renders innecesarios
    */
   const servicios: Servicio[] = useMemo(() => [
-    {
-      icon: <Activity size={32} strokeWidth={1.5} />,
-      title: "Rehabilitación Física",
-      desc: "Recupera tu función motora con protocolos clínicos personalizados y tecnología avanzada.",
-      badge: "Especialidad"
-    },
-    {
-      icon: <Crosshair size={32} strokeWidth={1.5} />,
-      title: "Terapia Deportiva",
-      desc: "Regresa al rendimiento óptimo tras lesiones musculares o articulares.",
-      badge: "Popular"
-    },
-    {
-      icon: <Stethoscope size={32} strokeWidth={1.5} />,
-      title: "Evaluación Funcional",
-      desc: "Diagnóstico preciso de tu condición para un plan de tratamiento 100% efectivo.",
-    },
-    {
-      icon: <HeartPulse size={32} strokeWidth={1.5} />,
-      title: "Recuperación Postoperatoria",
-      desc: "Acompañamiento especializado para una cicatrización y movilidad segura.",
-    },
-    {
-      icon: <Brain size={32} strokeWidth={1.5} />,
-      title: "Terapia del Dolor",
-      desc: "Manejo integral del dolor crónico con técnicas neuromoduladoras de vanguardia.",
-    },
-    {
-      icon: <Users size={32} strokeWidth={1.5} />,
-      title: "Biomecánica y Postura",
-      desc: "Corrección postural y análisis del movimiento para prevenir futuras lesiones.",
-    },
-  ], []);
+  {
+    icon: <ClipboardCheck size={32} strokeWidth={1.5} />,
+    title: "Diagnóstico Especializado",
+    desc: "Identificación precisa del origen de tu lesión mediante ecografía musculoesquelética y pruebas de limitación funcional.",
+    badge: "Alta Precisión"
+  },
+  {
+    icon: <Syringe size={32} strokeWidth={1.5} />,
+    title: "Intervencionismo Médico",
+    desc: "Procedimientos mínimamente invasivos diseñados para reducir la inflamación y acelerar la regeneración de tejidos.",
+    badge: "Popular"
+  },
+  {
+    icon: <Move size={32} strokeWidth={1.5} />,
+    title: "Rehabilitación Integral",
+    desc: "Planes terapéuticos personalizados para recuperar la movilidad y fuerza tras cirugías o lesiones crónicas.",
+  },
+  {
+    icon: <ThermometerSnowflake size={32} strokeWidth={1.5} />,
+    title: "Manejo de Articulaciones",
+    desc: "Tratamiento avanzado para el alivio de dolor persistente en hombros, rodillas, columna y extremidades.",
+  },
+  {
+    icon: <Zap size={32} strokeWidth={1.5} />,
+    title: "Terapia Intervencionista",
+    desc: "Control del dolor crónico mediante técnicas de neuromodulación y medicina física de última generación.",
+  },
+  {
+    icon: <Accessibility size={32} strokeWidth={1.5} />,
+    title: "Análisis Biomecánico",
+    desc: "Evaluación detallada de la postura y el movimiento para corregir vicios mecánicos y prevenir futuras recaídas.",
+  },
+], []);
 
   /**
    * Array de testimonios de pacientes
@@ -248,7 +248,7 @@ export default function DoctorLanding() {
       <TestimoniosSection testimonios={testimonios} />
 
       {/* ========== FOOTER CTA ========== */}
-      <FooterCTA />
+      <Footer />
     </div>
   );
 }
@@ -268,7 +268,7 @@ function NavBar({ scrolled }: { scrolled: boolean }) {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled
       ? "bg-white/85 backdrop-blur-xl border-slate-200/40 py-3 shadow-lg shadow-slate-900/5"
       : "bg-transparent border-transparent py-6"
-    }`}>
+      }`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo y nombre */}
         <div className="flex items-center gap-3 group cursor-pointer">
@@ -298,9 +298,11 @@ function NavBar({ scrolled }: { scrolled: boolean }) {
             </a>
           ))}
 
-          {/* Botón CTA */}
-          <button className="bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-700 hover:to-sky-700 text-white px-7 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-teal-600/30 transition-all hover:shadow-teal-600/50 hover:-translate-y-0.5 flex items-center gap-2 group">
-            <Phone size={16} className="group-hover:rotate-12 transition-transform" /> Agendar
+          {/* Botón CTA Corregido */}
+          < button onClick={() => window.location.href = "https://wa.me/527717023676"}
+            className="bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-700 hover:to-sky-700 text-white px-7 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-teal-600/30 transition-all hover:shadow-teal-600/50 hover:-translate-y-0.5 flex items-center gap-2 group">
+            <Phone size={16} className="group-hover:rotate-12 transition-transform" />
+            WhatsApp
           </button>
         </div>
 
@@ -309,7 +311,7 @@ function NavBar({ scrolled }: { scrolled: boolean }) {
           <Phone size={18} />
         </button>
       </div>
-    </nav>
+    </nav >
   );
 }
 
@@ -324,9 +326,6 @@ function NavBar({ scrolled }: { scrolled: boolean }) {
  * @returns {JSX.Element} Hero section renderizado
  */
 function HeroSection({
-  servicios,
-  openServicios,
-  setOpenServicios,
   serviciosRef,
   counts
 }: {
@@ -352,7 +351,7 @@ function HeroSection({
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
             </span>
-            <span className="text-xs font-bold text-teal-800 tracking-wide">Certificada · Disponible en Puebla</span>
+            <span className="text-xs font-bold text-teal-800 tracking-wide">Certificada · Disponible en Huehutla de Reyes, Hidalgo</span>
           </div>
 
           {/* Headline principal */}
@@ -362,60 +361,41 @@ function HeroSection({
             <span className="text-teal-600">.</span>
           </h1>
 
-          {/* Subtítulo */}
-          <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-lg font-light">
-            Rehabilitación física con enfoque humanista y evidencia científica de vanguardia. Diseñamos tratamientos personalizados para que vuelvas a tu vida sin dolor.
-          </p>
+          {/* Sección de Texto Hero */}
+          <div className="space-y-6">
+            {/* Badge de Certificación con Estilo */}
+            <div className="flex items-center gap-2 group">
+              <div className="bg-teal-50 p-2 rounded-lg border border-teal-100 group-hover:bg-teal-600 group-hover:text-white transition-all duration-300">
+                <Award size={20} className="text-teal-600 group-hover:text-white" />
+              </div>
+              <span className="text-sm md:text-base text-slate-700 font-bold tracking-tight">
+                Certificada por el Consejo Mexicano de Medicina de Rehabilitación
+              </span>
+            </div>
+
+            {/* Subtítulo / Promesa de Valor */}
+            <p className="text-lg md:text-xl text-slate-500 leading-relaxed max-w-xl font-light">
+              Especialista dedicada a la <span className="text-slate-900 font-medium">recuperación funcional</span> y el manejo del dolor, brindando atención de vanguardia a la comunidad de la <span className="text-teal-600 font-medium italic">Huasteca</span>.
+            </p>
+          </div>
 
           {/* Botones CTA */}
           <div className="flex flex-wrap gap-4 pt-4">
-            <button className="bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-700 hover:to-sky-700 text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-teal-600/30 hover:shadow-teal-600/50 transition-all hover:-translate-y-1 flex items-center gap-3 group">
+            <button
+              onClick={() => window.location.href = "https://wa.me/527717023676"}
+              className="bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-700 hover:to-sky-700 text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-teal-600/30 hover:shadow-teal-600/50 transition-all hover:-translate-y-1 flex items-center gap-3 group">
               <Phone size={20} className="group-hover:rotate-12 transition-transform" /> Agendar Evaluación
             </button>
 
-            {/* Dropdown de servicios */}
+            {/* Dropdown de servicios convertido a Enlace */}
             <div className="relative" ref={serviciosRef}>
-              <button
-                onClick={() => setOpenServicios(!openServicios)}
-                className="bg-white border-2 border-slate-200 hover:border-teal-300 text-slate-700 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2 group"
+              <a
+                href="#servicios"
+                className="bg-white border-2 border-slate-200 hover:border-teal-300 text-slate-700 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2 group cursor-pointer inline-flex"
               >
                 Ver Servicios
-                <ChevronDown
-                  size={18}
-                  className={`transition-transform duration-300 group-hover:text-teal-600 ${openServicios ? "rotate-180" : ""}`}
-                />
-              </button>
+              </a>
 
-              {/* Dropdown content */}
-              {openServicios && (
-                <div className="absolute top-full mt-3 w-96 bg-white/95 backdrop-blur-xl border-2 border-slate-200 rounded-3xl shadow-2xl p-3 z-50 animate-in fade-in slide-in-from-top-2">
-                  {servicios.map((s, index) => (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        setOpenServicios(false);
-                        const section = document.getElementById("servicios");
-                        section?.scrollIntoView({ behavior: "smooth", block: "start" });
-                      }}
-                      className="w-full flex items-start gap-4 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-teal-50 hover:to-sky-50 transition-all text-left group"
-                    >
-                      <div className="text-teal-600 mt-1 group-hover:scale-110 transition-transform">
-                        {s.icon}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                          <p className="font-bold text-slate-900 text-sm">{s.title}</p>
-                          {s.badge && (
-                            <span className="text-[10px] font-bold text-teal-600 bg-teal-100 px-2 py-1 rounded-full">{s.badge}</span>
-                          )}
-                        </div>
-                        <p className="text-xs text-slate-500 line-clamp-2 mt-1">{s.desc}</p>
-                      </div>
-                      <ArrowRight size={16} className="text-slate-300 group-hover:text-teal-600 transition-colors mt-1" />
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -429,7 +409,7 @@ function HeroSection({
 
             {/* Imagen principal */}
             <img
-              src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80"
+              src="/DraMonserrat.jpg"
               className="w-full h-full object-cover rounded-[2.5rem] shadow-2xl shadow-teal-900/20 relative z-10 border-4 border-white"
               alt="Dra. Monserrat Flores Loyola en consulta"
             />
@@ -470,7 +450,7 @@ function StatsBar({ counts }: { counts: CounterState }) {
           <StatItem num={counts.patients} suffix="+" label="Casos de éxito" />
           <StatItem num={counts.certs} suffix="" label="Certificaciones" />
           <StatItem num={98} suffix="%" label="Satisfacción" />
-          <StatItem num={1} suffix="" label="Clínica Puebla" />
+          <StatItem num={1} suffix="" label="Clínica Huehutla de Reyes, Hidalgo" />
         </div>
       </div>
     </section>
@@ -547,6 +527,8 @@ function ServicesSection({
             </div>
           ))}
         </div>
+
+        
       </div>
     </section>
   );
@@ -621,49 +603,7 @@ function TestimoniosSection({ testimonios }: { testimonios: Testimonio[] }) {
  * 
  * @returns {JSX.Element} Footer CTA renderizado
  */
-function FooterCTA() {
-  return (
-    <footer id="contacto" className="bg-white py-24 px-6 relative z-10 border-t-2 border-slate-100">
-      <div className="max-w-4xl mx-auto text-center">
 
-        {/* Ícono */}
-        <div className="w-20 h-20 bg-gradient-to-br from-teal-100 to-sky-100 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
-          <HeartPulse className="text-teal-600" size={36} />
-        </div>
-
-        {/* Contenido */}
-        <h2 className="text-4xl md:text-5xl font-serif font-black text-slate-900 mb-6 leading-tight">
-          ¿Listo para recuperar tu bienestar?
-        </h2>
-        <p className="text-slate-600 mb-12 text-lg leading-relaxed max-w-2xl mx-auto">
-          No permitas que el dolor decida por ti. Agenda tu evaluación inicial y demos el primer paso hacia tu recuperación total.
-        </p>
-
-        {/* Botones CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button className="w-full sm:w-auto bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 text-white px-10 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-900/20 hover:shadow-slate-900/40 hover:-translate-y-1">
-            <Phone size={22} /> Agendar Cita Online
-          </button>
-          <button className="w-full sm:w-auto bg-gradient-to-r from-teal-50 to-sky-50 border-2 border-teal-200 hover:from-teal-100 hover:to-sky-100 hover:border-teal-300 text-teal-800 px-10 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg shadow-teal-200/30">
-            <MessageCircle size={22} /> WhatsApp Directo
-          </button>
-        </div>
-
-        {/* Footer info */}
-        <div className="mt-20 pt-8 border-t-2 border-slate-100 text-slate-500 text-sm space-y-4">
-          <p>© 2026 Dra. Monserrat Flores Loyola · Especialista en Rehabilitación Física</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 items-center text-xs">
-            <div className="flex items-center gap-2">
-              <MapPin size={16} className="text-teal-600" /> Clínica Centro · Puebla, México
-            </div>
-            <span className="hidden sm:inline text-slate-300">·</span>
-            <p>Cédula Profesional: 123456789</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 // ============================================
 // COMPONENTES UTILITARIOS REUTILIZABLES
