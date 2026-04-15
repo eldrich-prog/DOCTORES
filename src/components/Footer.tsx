@@ -33,7 +33,7 @@ export default function Footer() {
                             <a href="https://www.instagram.com/rehabiconciencia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-teal-600 hover:text-white transition-all shadow-sm">
                                 <Instagram size={18} />
                             </a>
-                            <a href="https://www.instagram.com/rehabiconciencia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-teal-600 hover:text-white transition-all shadow-sm">
+                            <a href="https://www.facebook.com/RehabiConCiencia" className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-teal-600 hover:text-white transition-all shadow-sm">
                                 <Facebook size={18} />
                             </a>
                         </div>
@@ -76,7 +76,7 @@ export default function Footer() {
                             </p>
 
                             <a
-                                href="https://www.google.com/maps/place/Plaza+Las+Franquicias/@21.1415176,-98.411863,20.43z"
+                                href="https://maps.app.goo.gl/nCWMcc8bHWy3Fbrk8"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 text-teal-600 text-xs font-bold hover:underline relative z-10"
